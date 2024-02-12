@@ -12,7 +12,7 @@ public class Email {
         if (isEmailValid) {
             this.email = email;
         } else {
-            throw new Exception("Email invalid !!!!!!!");
+            throw new Exception("Invalid email!!!!!!!");
         }
     }
 

@@ -1,4 +1,4 @@
-package com.lucas.techchallenge.core.entities.dtos;
+package com.lucas.techchallenge.common.dtos;
 
 public class UserDto {
     public String userName;

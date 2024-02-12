@@ -12,7 +12,7 @@ public class CPF {
         if (isCpfvalid) {
             this.cpf = cpf;
         } else {
-            throw new Exception("CPF invalid !!!!!!!");
+            throw new Exception("Invalid CPF !!!!!!!");
         }
     }
 

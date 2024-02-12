@@ -1,6 +1,6 @@
 package com.lucas.techchallenge.core.entities;
 
-import com.lucas.techchallenge.core.entities.dtos.UserDto;
+import com.lucas.techchallenge.common.dtos.UserDto;
 import lombok.Data;
 
 import java.util.Objects;
@@ -27,7 +27,7 @@ public class User {
         boolean nameHasLessThanThreeLetters = userName.length() < 3;
 
         if (nameIsNull || nameIsEmpty || nameHasLessThanThreeLetters) {
-            throw new Exception("Name invalid !!!!!!!!!");
+            throw new Exception("Invalid username!!!!!!!!!");
         }
     }
 }
