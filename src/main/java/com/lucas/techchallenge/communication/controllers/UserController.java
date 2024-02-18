@@ -5,7 +5,9 @@ import com.lucas.techchallenge.communication.gateways.UserRepository;
 import com.lucas.techchallenge.core.entities.User;
 import com.lucas.techchallenge.core.usecases.UserUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserController {
 
     @Autowired
