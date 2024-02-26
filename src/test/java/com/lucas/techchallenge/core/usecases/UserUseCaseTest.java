@@ -34,8 +34,8 @@ class UserUseCaseTest {
         var user = userUseCase.createUser(userDto, userRepository);
 
         assertNotNull(user.getId());
-        assertEquals(userDto.userName, user.getUsername());
-        assertEquals(userDto.email, user.getEmail().getEmail());
-        assertEquals(userDto.cpf, user.getCpf().getCpf());
+        assertEquals(userDto.getUserName(), user.getUsername());
+        assertEquals(userDto.getEmail(), user.getEmail().getEmail());
+        assertEquals(userDto.getCpf(), user.getCpf().getCpf());
     }
 }

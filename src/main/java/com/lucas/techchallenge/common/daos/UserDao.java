@@ -16,8 +16,6 @@ public class UserDao {
     private String cpf;
     private String email;
 
-    public UserDao() {}
-
     public UserDao(User user) {
         this.id = user.getId();
         this.username = user.getUsername();

@@ -1,9 +1,33 @@
 package com.lucas.techchallenge.common.dtos;
 
 public class UserDto {
-    public String userName;
-    public String cpf;
-    public String email;
+    private String userName;
+    private String cpf;
+    private String email;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public UserDto() {}
 
