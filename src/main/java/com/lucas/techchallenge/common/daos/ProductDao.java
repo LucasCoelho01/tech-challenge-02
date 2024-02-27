@@ -16,15 +16,14 @@ public class ProductDao {
     private UUID id;
     private String productName;
     private BigDecimal productPrice;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private CategoryDao category;
+    private String category;
 
     public ProductDao() {}
 
     public ProductDao(Product product) {
+        this.id = product.getId();
         this.productName = product.getProductName();
         this.productPrice = product.getProductPrice();
+        this.category = product.getCategory().name();
     }
 }

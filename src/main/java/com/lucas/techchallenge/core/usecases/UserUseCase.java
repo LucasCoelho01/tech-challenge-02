@@ -19,7 +19,7 @@ public class UserUseCase {
         return user;
     }
 
-    public List<User> gerAllUsers(UserRepository userRepository) {
+    public List<User> getAllUsers(UserRepository userRepository) {
         List<UserDao> usersDao = userRepository.findAll();
         List<User> users = new ArrayList<>();
 

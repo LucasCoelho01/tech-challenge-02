@@ -22,6 +22,6 @@ public class UserController {
     }
 
     public List<User> getAllUsers() {
-        return userUseCase.gerAllUsers(userRepository);
+        return userUseCase.getAllUsers(userRepository);
     }
 }
