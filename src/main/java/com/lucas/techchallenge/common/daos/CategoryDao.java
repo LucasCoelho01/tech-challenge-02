@@ -8,19 +8,22 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "categories")
 public class CategoryDao {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy= GenerationType.UUID)
+    private UUID id;
     private String categoryName;
 
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private Set<ProductDao> products;
+
+    public CategoryDao() {}
 
     public CategoryDao(Category category) {
         this.categoryName = category.getCategoryName();
