@@ -3,12 +3,15 @@ package com.lucas.techchallenge.core.entities;
 import com.lucas.techchallenge.common.dtos.ProductDto;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class Product {
+    private UUID id;
     private String productName;
     private BigDecimal productPrice;
 
     public Product(ProductDto productDto) {
+        this.id = UUID.randomUUID();
         this.productName = productDto.getProductName();
         this.productPrice = productDto.getProductPrice();
     }

@@ -1,5 +1,6 @@
 package com.lucas.techchallenge.core.entities;
 
+import com.lucas.techchallenge.common.daos.UserDao;
 import com.lucas.techchallenge.common.dtos.UserDto;
 
 import java.util.Objects;
@@ -17,6 +18,13 @@ public class User {
         this.username = userDto.getUserName();
         this.cpf = new CPF(userDto.getCpf());
         this.email = new Email(userDto.getEmail());
+    }
+
+    public User(UserDao userDao) throws Exception {
+        this.id = userDao.getId();
+        this.username = userDao.getUsername();
+        this.cpf = new CPF(userDao.getCpf());
+        this.email = new Email(userDao.getEmail());
     }
 
     private void validateUserName(String userName) throws Exception {

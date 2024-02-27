@@ -19,4 +19,9 @@ public class CPF {
     private boolean validateCpf(String cpf) {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return this.cpf;
+    }
 }

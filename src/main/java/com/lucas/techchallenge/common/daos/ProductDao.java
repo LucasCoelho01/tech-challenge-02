@@ -13,7 +13,6 @@ import java.util.UUID;
 @Table(name = "products")
 public class ProductDao {
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
     private String productName;
     private BigDecimal productPrice;

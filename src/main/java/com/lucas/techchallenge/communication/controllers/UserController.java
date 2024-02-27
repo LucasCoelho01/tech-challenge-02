@@ -7,6 +7,8 @@ import com.lucas.techchallenge.core.usecases.UserUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class UserController {
 
@@ -17,5 +19,9 @@ public class UserController {
     private UserRepository userRepository;
     public User createUser(UserDto userDto) throws Exception {
         return userUseCase.createUser(userDto, userRepository);
+    }
+
+    public List<User> getAllUsers() {
+        return userUseCase.gerAllUsers(userRepository);
     }
 }

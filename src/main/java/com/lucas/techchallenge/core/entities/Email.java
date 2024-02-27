@@ -19,4 +19,9 @@ public class Email {
     private boolean validateEmail(String email) {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return this.email;
+    }
 }

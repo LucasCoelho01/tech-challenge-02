@@ -15,7 +15,6 @@ import java.util.UUID;
 @Table(name = "categories")
 public class CategoryDao {
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
     private String categoryName;
 
