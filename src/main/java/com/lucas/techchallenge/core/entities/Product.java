@@ -5,6 +5,7 @@ import com.lucas.techchallenge.common.dtos.ProductDto;
 import com.lucas.techchallenge.core.enums.CategoryEnum;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.UUID;
 
 public class Product {
@@ -14,6 +15,8 @@ public class Product {
 
     private CategoryEnum category;
 
+    public Product() {}
+
     public Product(ProductDto productDto) {
         this.id = UUID.randomUUID();
         this.productName = productDto.getProductName();
@@ -22,10 +25,17 @@ public class Product {
     }
 
     public Product(ProductDao productDao) {
-        this.id = UUID.randomUUID();
+        this.id = productDao.getId();
         this.productName = productDao.getProductName();
         this.productPrice = productDao.getProductPrice();
         this.category = CategoryEnum.valueOf(productDao.getCategory());
+    }
+
+    public Product(Optional<ProductDao> productDao) {
+        this.id = productDao.get().getId();
+        this.productName = productDao.get().getProductName();
+        this.productPrice = productDao.get().getProductPrice();
+        this.category = CategoryEnum.valueOf(productDao.get().getCategory());
     }
 
     public UUID getId() {

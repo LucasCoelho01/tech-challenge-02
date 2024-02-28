@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProductUseCase {
@@ -33,5 +35,15 @@ public class ProductUseCase {
         });
 
         return products;
+    }
+
+    public Product getById(UUID id, ProductRepository productRepository) {
+        Optional<ProductDao> productDao = productRepository.findById(id);
+
+        if (productDao.isPresent()) {
+            Product product = new Product(productDao);
+            return product;
+        }
+        return new Product();
     }
 }

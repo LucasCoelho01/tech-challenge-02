@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class ProductController {
@@ -22,5 +23,9 @@ public class ProductController {
 
     public List<Product> getAllProducts() {
         return productUseCase.getAllProducts(productRepository);
+    }
+
+    public Product getById(UUID id) {
+        return productUseCase.getById(id, productRepository);
     }
 }
