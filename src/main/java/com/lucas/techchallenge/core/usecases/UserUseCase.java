@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserUseCase {
@@ -33,5 +35,11 @@ public class UserUseCase {
         });
 
         return users;
+    }
+
+    public Optional<UserDao> getUserById(String id, UserRepository userRepository) {
+        UUID id_uuid = UUID.fromString(id);
+
+        return userRepository.findById(id_uuid);
     }
 }

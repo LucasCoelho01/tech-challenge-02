@@ -6,6 +6,7 @@ import com.lucas.techchallenge.core.entities.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Data
