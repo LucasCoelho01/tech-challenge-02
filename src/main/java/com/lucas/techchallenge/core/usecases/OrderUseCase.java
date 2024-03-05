@@ -1,7 +1,6 @@
 package com.lucas.techchallenge.core.usecases;
 
 import com.lucas.techchallenge.common.daos.OrderDao;
-import com.lucas.techchallenge.common.daos.ProductDao;
 import com.lucas.techchallenge.common.daos.UserDao;
 import com.lucas.techchallenge.common.dtos.OrderDto;
 import com.lucas.techchallenge.communication.gateways.OrderRepository;
@@ -9,6 +8,7 @@ import com.lucas.techchallenge.communication.gateways.ProductRepository;
 import com.lucas.techchallenge.communication.gateways.UserRepository;
 import com.lucas.techchallenge.core.entities.Order;
 import com.lucas.techchallenge.core.entities.Product;
+import com.lucas.techchallenge.core.enums.OrderStatusEnum;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,9 +25,8 @@ public class OrderUseCase {
                              ProductRepository productRepository) throws Exception {
         Order order = new Order();
 
-        Optional<UserDao> user = userUseCase.getUserById(orderDto.getUser_id(), userRepository);
-
-        if (Objects.nonNull(user)) {
+        if (Objects.nonNull(orderDto.getUser_id())) {
+            Optional<UserDao> user = userUseCase.getUserById(orderDto.getUser_id(), userRepository);
             order.setUsername(user.get().getUsername());
         }
 
@@ -47,6 +46,54 @@ public class OrderUseCase {
 
         OrderDao orderCreated = orderRepository.save(new OrderDao(order));
         order.setPrice(orderCreated.getPrice());
+
+        return order;
+    }
+
+    public List<Order> getAllOrders(OrderRepository orderRepository) {
+        List<Order> orders = new ArrayList<>();
+        List<OrderDao> ordersDao = orderRepository.findAll();
+
+        ordersDao.forEach(orderDao -> {
+            Order order = new Order(orderDao);
+            orders.add(order);
+        });
+
+        return orders;
+    }
+
+    public Order getOrderById(String id, OrderRepository orderRepository) {
+        UUID id_uuid = UUID.fromString(id);
+        Optional<OrderDao> orderDao = orderRepository.findById(id_uuid);
+
+        if (Objects.nonNull(orderDao)) {
+            return new Order(orderDao);
+        }
+
+        return new Order();
+    }
+
+    public Order updateOrderStatus(String id, String status, OrderRepository orderRepository) {
+        Order order = getOrderById(id, orderRepository);
+
+        switch (status) {
+            case "PRONTO":
+                order.setStatus(OrderStatusEnum.PRONTO);
+            case "EM_PREPARACAO" :
+                order.setStatus(OrderStatusEnum.EM_PREPARACAO);
+            case "RECEBIDO":
+                order.setStatus(OrderStatusEnum.RECEBIDO);
+            case "FINALIZADO" :
+                order.setStatus(OrderStatusEnum.FINALIZADO);
+            default:
+                order.setStatus(OrderStatusEnum.RECEBIDO);
+        }
+
+        OrderDao orderDao = new OrderDao(order);
+
+        orderDao.setStatus(status);
+
+        orderRepository.save(orderDao);
 
         return order;
     }

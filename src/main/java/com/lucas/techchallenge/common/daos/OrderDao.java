@@ -26,9 +26,6 @@ public class OrderDao {
             {@JoinColumn(name="product_id")})
     private List<ProductDao> products;
 
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
-    private int sequence;
-
     private String status;
 
     private BigDecimal price;
@@ -40,6 +37,7 @@ public class OrderDao {
     public OrderDao(Order order) {
         this.id = order.getId();
         this.username = order.getUsername();
+        this.status = order.getStatus().toString();
         this.products = getProductsDao(order.getProducts());
         this.price = calculatePrice(order.getProducts());
         this.createdTimestamp = new Timestamp(System.currentTimeMillis());
@@ -91,14 +89,6 @@ public class OrderDao {
 
     public void setProducts(List<ProductDao> products) {
         this.products = products;
-    }
-
-    public int getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(int sequence) {
-        this.sequence = sequence;
     }
 
     public String getStatus() {
