@@ -17,6 +17,8 @@ minikube start
 
 kubectl apply -f .\api-deployment.yaml  
 
+## Teste
+
 kubectl apply -f .\api-service.yaml  
 
 kubectl port-forward service/java-api-service 8080:80 
