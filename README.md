@@ -25,3 +25,4 @@ kubectl port-forward service/java-api-service 8080:80
 
 ## Testar a aplicação:
 Para testar a aplicação basta importar a Collection(anexa na raiz do projeto) no Postman e enviar as requisições
+
